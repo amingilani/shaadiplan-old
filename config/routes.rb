@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :guests
+  resources :weddings
   # home page
   root 'public_pages#home'
 
