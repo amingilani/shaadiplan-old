@@ -1,2 +1,0 @@
-class Wedding < ApplicationRecord
-end
