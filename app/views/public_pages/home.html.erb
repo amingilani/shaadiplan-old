@@ -4,7 +4,11 @@
 <script type="text/javascript">
   var lock = new Auth0Lock('TIKTNP8kYglAOMR6jhOEBBEi0qJUxFCI', 'gilani.auth0.com', {
     auth: {
+      <% if Rails.env.production? %>
       redirectUrl: 'https://shaadiplan.io/auth/auth0/callback',
+      <% else %>
+      redirectUrl: 'http://localhost:3000/auth/auth0/callback',
+      <% end %>
       responseType: 'code',
       params: {
         scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
