@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboard/show'
+
   get 'public_pages/home'
 
   # Auth0 routes for authentication
