@@ -45,6 +45,8 @@ group :development do
   gem 'capistrano-rails'
   # annotations are useful
   gem 'annotate'
+  # nested scaffolds
+  gem 'nested_scaffold'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
