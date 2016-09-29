@@ -14,4 +14,5 @@
 # <!-- END MODEL ANNOTATION -->
 
 class Wedding < ApplicationRecord
+  has_many :guests
 end
