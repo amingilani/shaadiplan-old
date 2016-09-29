@@ -1,12 +1,25 @@
 module Auth0Helper
   private
 
-  def logged_in_using_omniauth?
+  # Is the user signed in?
+  # @return [Boolean]
+  def user_signed_in?
+    session[:userinfo].present?
+  end
+
+  # Set the @current_user or redirect to public page
+  def authenticate_user!
     # Redirect to page that has the login here
-    if session[:userinfo].present?
-      @user = session[:userinfo]
+    if user_signed_in?
+      @current_user = session[:userinfo]
     else
       redirect_to root_path
     end
+  end
+
+  # What's the current_user?
+  # Return [Hash]
+  def current_user
+    @current_user
   end
 end
