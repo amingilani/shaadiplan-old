@@ -14,17 +14,16 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-
-    config.cache_store = :memory_store
+    config.action_controller.perform_caching = false
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800'
     }
   else
     config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
   end
+
+  # a cache store is needed for jwt authentication
+  config.cache_store = :memory_store
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -51,4 +50,13 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  OmniAuth.config.on_failure = proc { |env|
+    message_key = env['omniauth.error.type']
+    error_description = Rack::Utils.escape(env['omniauth.error'].error_reason)
+    new_path = "#{env['SCRIPT_NAME']}#{OmniAuth.config.path_prefix}\
+    /failure?message=#{message_key}&error_description=#{error_description}"
+    Rack::Response.new(['302 Moved'], 302, 'Location' => new_path).finish
+  }
+
 end
