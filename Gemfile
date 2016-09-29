@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
 # Authentication via auth0
+gem 'auth0'
 gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-auth0', '~> 1.4.1'
 # Intercom
@@ -32,6 +33,8 @@ gem 'intercom-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Load .env variables
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end
 
 group :development do
