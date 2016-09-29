@@ -15,4 +15,5 @@
 
 class Wedding < ApplicationRecord
   has_many :guests
+  has_many :teams
 end

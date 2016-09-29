@@ -27,4 +27,10 @@
 
 class Team < ApplicationRecord
   belongs_to :wedding
+
+  enum color: [
+    :red,
+    :blue
+  ]
+
 end
