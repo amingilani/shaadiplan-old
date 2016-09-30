@@ -226,6 +226,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   auth0
+  bundler (~> 1.13.1)
   byebug
   capistrano-rails
   coffee-rails (~> 4.2)
