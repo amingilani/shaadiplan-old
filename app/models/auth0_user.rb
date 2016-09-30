@@ -13,11 +13,12 @@
 #
 
 class Auth0User < ApplicationRecord
+  after_initialize :set_instance_variables
+
   validates :auth0_id, presence: true,
                        uniqueness: true
 
   def info(key = nil)
-    set_instance_variables
     key.nil? ? @user : @user[key.to_s]
   end
 
