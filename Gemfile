@@ -13,8 +13,6 @@ gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -32,12 +30,20 @@ gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-auth0', '~> 1.4.1'
 # Intercom
 gem 'intercom-rails'
+# Semantic UI
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # Load .env variables
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'dotenv-rails', require: 'dotenv/rails-now' # rspec for testing
+  # Style guide to make developer lives hell
+  gem 'rubocop', require: false
+  # guard is nice, with all the extras
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'guard-rubocop'
 end
 
 group :development do
