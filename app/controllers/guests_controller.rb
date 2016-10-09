@@ -4,7 +4,7 @@ class GuestsController < ApplicationController
 
   # GET weddings/1/guests
   def index
-    @guests = @weddings.guests
+    @guests = @wedding.guests
   end
 
   # GET weddings/1/guests/1
@@ -13,7 +13,7 @@ class GuestsController < ApplicationController
 
   # GET weddings/1/guests/new
   def new
-    @guest = @weddings.guests.build
+    @guest = @wedding.guests.build
   end
 
   # GET weddings/1/guests/1/edit
@@ -22,7 +22,7 @@ class GuestsController < ApplicationController
 
   # POST weddings/1/guests
   def create
-    @guest = @weddings.guests.build(guest_params)
+    @guest = @wedding.guests.build(guest_params)
 
     if @guest.save
       redirect_to([@guest.weddings, @guest], notice: 'Guest was successfully created.')
@@ -44,17 +44,21 @@ class GuestsController < ApplicationController
   def destroy
     @guest.destroy
 
-    redirect_to weddings_guests_url(@weddings)
+    redirect_to weddings_guests_url(@wedding)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_guests
-      @weddings = Wedding.find(params[:weddings_id])
+      @wedding = Wedding.find(params[:wedding_id])
     end
 
     def set_guest
-      @guest = @weddings.guests.find(params[:id])
+      @guest = @wedding.guests.find(params[:id])
+    end
+
+    def wedding_params
+      params.permit(:wedding_id)
     end
 
     # Only allow a trusted parameter "white list" through.

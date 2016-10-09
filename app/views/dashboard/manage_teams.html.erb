@@ -1,8 +1,8 @@
 <div class="ui text container">
-  <form action="<%= teams_path %>" method="post" >
-    <input type="hidden" name="authenticity token" value="<%#= authenticity_token %>">
-  </form>
-
-  <%= form_for @new_team do |f| %>
+<ul>
+  <% @teams.each do |team| %>
+  <li><%= team.name %>'s Team</li>
+  <%= wedding_guests_path(team.wedding) %>
   <% end %>
+</ul>
 </div>
