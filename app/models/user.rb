@@ -1,6 +1,6 @@
 # ## Schema Information
 #
-# Table name: `auth0_users`
+# Table name: `users`
 #
 # ### Columns
 #
