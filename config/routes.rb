@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   # Dashboard
   get 'dashboard' => 'dashboard#show'
+  get 'dashboard/manage_teams' => 'dashboard#manage_teams'
+  get 'dashboard/manage_weddings' => 'dashboard#manage_weddings'
 end

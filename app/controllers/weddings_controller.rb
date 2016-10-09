@@ -12,10 +12,10 @@ class WeddingsController < ApplicationController
   def show
   end
 
-  # GET /weddings/new
-  def new
-    @wedding = Wedding.new
-  end
+  # # GET /weddings/new
+  # def new
+  #   @wedding = Wedding.new
+  # end
 
   # GET /weddings/1/edit
   def edit
@@ -62,13 +62,14 @@ class WeddingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_wedding
-      @wedding = Wedding.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def wedding_params
-      params.fetch(:wedding, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_wedding
+    @wedding = Wedding.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def wedding_params
+    params.fetch(:wedding).permit(:name)
+  end
 end

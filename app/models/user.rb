@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   has_many :user_teams
   has_many :teams, through: :user_teams
+  has_many :weddings, through: :teams
 
   validates :auth0_id, presence: true,
                        uniqueness: true

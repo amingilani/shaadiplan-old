@@ -1,4 +1,3 @@
-# <!-- BEGIN MODEL ANNOTATION -->
 # ## Schema Information
 #
 # Table name: `weddings`
@@ -10,8 +9,8 @@
 # **`id`**          | `integer`          | `not null, primary key`
 # **`created_at`**  | `datetime`         | `not null`
 # **`updated_at`**  | `datetime`         | `not null`
+# **`name`**        | `string`           | `not null`
 #
-# <!-- END MODEL ANNOTATION -->
 
 class Wedding < ApplicationRecord
   has_many :guests
