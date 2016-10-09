@@ -15,6 +15,9 @@
 class User < ApplicationRecord
   after_initialize :set_instance_variables
 
+  has_many :user_teams
+  has_many :teams, through: :user_teams
+
   validates :auth0_id, presence: true,
                        uniqueness: true
 
