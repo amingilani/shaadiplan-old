@@ -1,4 +1,5 @@
 class WeddingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_wedding, only: [:show, :edit, :update, :destroy]
 
   # GET /weddings
@@ -24,7 +25,12 @@ class WeddingsController < ApplicationController
   # POST /weddings
   # POST /weddings.json
   def create
-    @wedding = Wedding.new(wedding_params)
+    @wedding = Wedding.create(wedding_params)
+    first_team = Team.new(team_first_params)
+    @wedding.teams << first_team
+    @wedding.teams << Team.new(team_alpha_params)
+
+    first_team.users << current_user
 
     respond_to do |format|
       if @wedding.save
@@ -68,8 +74,16 @@ class WeddingsController < ApplicationController
     @wedding = Wedding.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  ## params
   def wedding_params
     params.fetch(:wedding).permit(:name)
+  end
+
+  def team_first_params
+    params.fetch(:wedding).fetch(:team_first).permit(:name)
+  end
+
+  def team_alpha_params
+    params.fetch(:wedding).fetch(:team_alpha).permit(:name)
   end
 end
