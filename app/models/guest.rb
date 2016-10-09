@@ -27,5 +27,5 @@
 #
 
 class Guest < ApplicationRecord
-  belongs_to :weddings
+  belongs_to :wedding
 end
