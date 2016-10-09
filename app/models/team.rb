@@ -25,8 +25,8 @@
 
 class Team < ApplicationRecord
   belongs_to :wedding
-  has_many :user_teams
-  has_many :users, through: :user_teams
+  has_many :relationships
+  has_many :users, through: :relationships
 
   validates :name, presence: true
 end

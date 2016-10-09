@@ -1,7 +1,6 @@
-# <!-- BEGIN MODEL ANNOTATION -->
 # ## Schema Information
 #
-# Table name: `user_teams`
+# Table name: `relationships`
 #
 # ### Columns
 #
@@ -15,9 +14,9 @@
 #
 # ### Indexes
 #
-# * `index_user_teams_on_team_id`:
+# * `index_relationships_on_team_id`:
 #     * **`team_id`**
-# * `index_user_teams_on_user_id`:
+# * `index_relationships_on_user_id`:
 #     * **`user_id`**
 #
 # ### Foreign Keys
@@ -27,9 +26,8 @@
 # * `fk_rails_978858c8ea`:
 #     * **`user_id => users.id`**
 #
-# <!-- END MODEL ANNOTATION -->
 
-class UserTeam < ApplicationRecord
+class Relationship < ApplicationRecord
   belongs_to :user
   belongs_to :team
 end
