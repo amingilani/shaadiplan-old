@@ -31,4 +31,19 @@
 class Relationship < ApplicationRecord
   belongs_to :user
   belongs_to :team
+
+  validates :title, presence: true
+
+  enum title: {
+    father: 1,
+    mother: 2,
+    brother: 3,
+    sister: 4,
+    friend: 5,
+    cousin: 6,
+    aunt: 7,
+    uncle: 8,
+    grandmother: 9,
+    grandfather: 10
+  }
 end
