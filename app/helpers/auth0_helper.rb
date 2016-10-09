@@ -11,7 +11,7 @@ module Auth0Helper
   def authenticate_user!
     # Redirect to page that has the login here
     if user_signed_in?
-      @current_user = Auth0User.find_or_create_by(
+      @current_user = User.find_or_create_by(
         auth0_id: session[:userinfo].uid
       )
     else
