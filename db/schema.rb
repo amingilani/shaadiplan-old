@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009164755) do
+ActiveRecord::Schema.define(version: 20161009185616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "guests", force: :cascade do |t|
-    t.integer  "weddings_id"
+    t.integer  "wedding_id"
     t.string   "name"
     t.string   "email"
     t.string   "address"
     t.string   "phone"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["weddings_id"], name: "index_guests_on_weddings_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wedding_id"], name: "index_guests_on_wedding_id", using: :btree
   end
 
   create_table "teams", force: :cascade do |t|
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20161009164755) do
     t.string   "name",       null: false
   end
 
-  add_foreign_key "guests", "weddings", column: "weddings_id"
+  add_foreign_key "guests", "weddings"
   add_foreign_key "teams", "weddings"
   add_foreign_key "user_teams", "teams"
   add_foreign_key "user_teams", "users"
