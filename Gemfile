@@ -18,8 +18,8 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rubocop', require: false
   # guard is nice, with all the extras
   gem 'guard'
+  gem 'guard-rails', require: false
   gem 'guard-livereload'
   gem 'guard-rubocop'
 end
