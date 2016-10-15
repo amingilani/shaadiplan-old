@@ -15,4 +15,8 @@
 class Wedding < ApplicationRecord
   has_many :guests
   has_many :teams
+
+  def couple
+    teams.map { |e| e.name }
+  end
 end

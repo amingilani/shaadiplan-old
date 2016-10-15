@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_wedding_path(@wedding) %> |
-<%= link_to 'Back', weddings_path %>
+<div class="ui text container">
+
+  <h1><%= @wedding.couple.map { |e| e.split(' ').first }.join(' & ') %>'s wedding</h1>
+
+  <a class="ui button" href="<%= wedding_guests_path(@wedding) %>">Add your name to the guest list</a>
+
+</div>

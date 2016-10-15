@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class WeddingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_wedding, only: %i(show edit update destroy)
 
   # GET /weddings
