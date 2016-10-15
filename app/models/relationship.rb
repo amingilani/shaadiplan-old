@@ -23,9 +23,9 @@
 #
 # ### Foreign Keys
 #
-# * `fk_rails_64c25f3fe6`:
+# * `fk_rails_678d19535f`:
 #     * **`team_id => teams.id`**
-# * `fk_rails_978858c8ea`:
+# * `fk_rails_a3d77c3b00`:
 #     * **`user_id => users.id`**
 #
 

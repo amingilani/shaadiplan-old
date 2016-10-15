@@ -1,5 +1,5 @@
 class GuestsController < ApplicationController
-  before_action :set_guests
+  before_action :set_wedding
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
 
   # GET weddings/1/guests
@@ -49,7 +49,7 @@ class GuestsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_guests
+    def set_wedding
       @wedding = Wedding.find(params[:wedding_id])
     end
 

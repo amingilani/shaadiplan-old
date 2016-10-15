@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009202504) do
+ActiveRecord::Schema.define(version: 20161015221845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20161009202504) do
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "invited_by"
+    t.integer  "team_id"
+    t.index ["team_id"], name: "index_guests_on_team_id", using: :btree
     t.index ["wedding_id"], name: "index_guests_on_wedding_id", using: :btree
   end
 
@@ -56,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161009202504) do
     t.string   "name",       null: false
   end
 
+  add_foreign_key "guests", "teams"
   add_foreign_key "guests", "weddings"
   add_foreign_key "relationships", "teams"
   add_foreign_key "relationships", "users"
