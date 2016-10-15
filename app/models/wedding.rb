@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # ## Schema Information
 #
 # Table name: `weddings`
@@ -17,6 +18,6 @@ class Wedding < ApplicationRecord
   has_many :teams
 
   def couple
-    teams.map { |e| e.name }
+    teams.map(&:name)
   end
 end
