@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # ## Schema Information
 #
 # Table name: `teams`
@@ -11,6 +12,7 @@
 # **`created_at`**  | `datetime`         | `not null`
 # **`updated_at`**  | `datetime`         | `not null`
 # **`name`**        | `string`           |
+# **`side`**        | `integer`          |
 #
 # ### Indexes
 #
@@ -29,4 +31,6 @@ class Team < ApplicationRecord
   has_many :users, through: :relationships
 
   validates :name, presence: true
+
+  enum side: %w(bride groom)
 end
