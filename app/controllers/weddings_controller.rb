@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class WeddingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_wedding, only: [:show, :edit, :update, :destroy]
+  before_action :set_wedding, only: %i(show edit update destroy)
 
   # GET /weddings
   # GET /weddings.json
@@ -16,6 +17,19 @@ class WeddingsController < ApplicationController
   # GET /weddings/new
   def new
     @wedding = Wedding.new
+    @relationship_titles = %w(
+      Father
+      Mother
+      Brother
+      Sister
+      Friend
+      Cousin
+      Aunt
+      Uncle
+      Grandmother
+      Grandfather
+      It's\ me!
+    )
   end
 
   # GET /weddings/1/edit
@@ -25,12 +39,20 @@ class WeddingsController < ApplicationController
   # POST /weddings
   # POST /weddings.json
   def create
-    @wedding = Wedding.create(wedding_params)
-    first_team = Team.new(team_first_params)
-    @wedding.teams << first_team
-    @wedding.teams << Team.new(team_alpha_params)
+    team_bride = Team.new(team_bride_params)
+    team_groom = Team.new(team_groom_params)
+    @wedding = Wedding.create(
+      name: "#{team_groom.name.split(' ').first}-\
+             #{team_bride.name.split(' ').first}-\
+             #{rand(10_000)}"
+    )
+    @wedding.teams << [team_bride, team_groom]
 
-    first_team.users << current_user
+    if relationship_params[:side] == 'bride'
+      Relationship.create team: team_bride, user: current_user, title: relationship_params[:relationship].downcase
+    else
+      Relationship.create team: team_groom, user: current_user, title: relationship_params[:relationship].downcase
+    end
 
     respond_to do |format|
       if @wedding.save
@@ -79,11 +101,15 @@ class WeddingsController < ApplicationController
     params.fetch(:wedding).permit(:name)
   end
 
-  def team_first_params
-    params.fetch(:wedding).fetch(:team_first).permit(:name)
+  def team_bride_params
+    params.fetch(:wedding).fetch(:team_bride).permit(:name)
   end
 
-  def team_alpha_params
-    params.fetch(:wedding).fetch(:team_alpha).permit(:name)
+  def team_groom_params
+    params.fetch(:wedding).fetch(:team_groom).permit(:name)
+  end
+
+  def relationship_params
+    params.fetch(:wedding).fetch(:relationship).permit(:side, :relationship)
   end
 end

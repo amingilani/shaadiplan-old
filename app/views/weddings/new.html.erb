@@ -1,5 +1,57 @@
-<h1>New Wedding</h1>
+<div class="ui text container">
+    <h1>Awww yeah! Congratulations!</h1>
 
-<%= render 'form', wedding: @wedding %>
+    <%= form_for @wedding, html: {class: 'ui form'} do |f| %>
+    <h3>Let's talk about the couple</h3>
 
-<%= link_to 'Back', weddings_path %>
+    <%= f.fields_for :team_bride do |tf| %>
+    <div class="field">
+
+        <%= tf.label :name, 'Bride', class: "control-label" %>
+        <%= tf.text_field :name, placeholder: 'Saniya Mirza', class: "form-control" %>
+    </div>
+    <% end %>
+
+    <%= f.fields_for :team_groom do |ta| %>
+    <div class="field">
+
+        <%= ta.label :name, 'Groom', class: "control-label" %>
+        <%= ta.text_field :name, placeholder: 'Amir Khan', class: "form-control" %>
+    </div>
+    <% end %>
+
+    <h3>So, about you</h3>
+
+    <%= f.fields_for :relationship do |you| %>
+    <div class="inline fields">
+        <%= you.label "I'm with the" %>
+
+        <div class="field">
+            <div class="ui radio checkbox">
+
+                <%= you.radio_button :side, 'bride', :checked => true %>
+                <%= you.label :side_bride, 'Bride' %>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+
+                <%= you.radio_button :side, 'groom' %>
+                <%= you.label :side_groom, 'Groom' %>
+            </div>
+        </div>
+      </div>
+
+
+        <div class="field">
+          <%= you.label :relationship, "I'm the", class: "control-label" %>
+            <%= you.select( :relationship, options_for_select(@relationship_titles), { include_blank: "Please select one" }, { class: "form-control" } ) %>
+        </div>
+
+
+    <% end %>
+
+    <%= f.submit "Let's go!", class: "ui button" %>
+    <% end %>
+
+</div>

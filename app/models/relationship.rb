@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # ## Schema Information
 #
 # Table name: `relationships`
@@ -35,14 +36,14 @@ class Relationship < ApplicationRecord
   validates :title, presence: true
 
   enum title: {
-    father: 1,
-    mother: 2,
-    brother: 3,
-    sister: 4,
-    friend: 5,
-    cousin: 6,
-    aunt: 7,
-    uncle: 8,
+    father:      1,
+    mother:      2,
+    brother:     3,
+    sister:      4,
+    friend:      5,
+    cousin:      6,
+    aunt:        7,
+    uncle:       8,
     grandmother: 9,
     grandfather: 10
   }
