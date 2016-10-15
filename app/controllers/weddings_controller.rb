@@ -13,10 +13,10 @@ class WeddingsController < ApplicationController
   def show
   end
 
-  # # GET /weddings/new
-  # def new
-  #   @wedding = Wedding.new
-  # end
+  # GET /weddings/new
+  def new
+    @wedding = Wedding.new
+  end
 
   # GET /weddings/1/edit
   def edit
