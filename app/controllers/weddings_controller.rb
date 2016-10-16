@@ -40,11 +40,13 @@ class WeddingsController < ApplicationController
   # POST /weddings.json
   def create
     team_bride = Team.new(team_bride_params)
+    team_bride[:side] = 'bride'
     team_groom = Team.new(team_groom_params)
+    team_groom[:side] = 'groom'
     @wedding = Wedding.create(
-      name: "#{team_groom.name.split(' ').first}-\
-             #{team_bride.name.split(' ').first}-\
-             #{rand(10_000)}"
+      name: "#{team_groom.name.split(' ').first}-" \
+            "#{team_bride.name.split(' ').first}-" \
+            "#{rand(10_000)}"
     )
     @wedding.teams << [team_bride, team_groom]
 

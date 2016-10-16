@@ -4,6 +4,6 @@
 
   <h1><%= @wedding.couple.map { |e| e.split(' ').first }.join(' & ') %>'s wedding</h1>
 
-  <a class="ui button" href="<%= wedding_guests_path(@wedding) %>">Add your name to the guest list</a>
+  <a class="ui button" href="<%= new_wedding_guest_path(@wedding) %>">Add your name to the guest list</a>
 
 </div>

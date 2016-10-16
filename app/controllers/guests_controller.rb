@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class GuestsController < ApplicationController
   before_action :set_wedding
-  before_action :set_guest, only: [:show, :edit, :update, :destroy]
+  before_action :set_guest, only: %i(show edit update destroy)
 
   # GET weddings/1/guests
   def index
@@ -14,6 +15,16 @@ class GuestsController < ApplicationController
   # GET weddings/1/guests/new
   def new
     @guest = @wedding.guests.build
+    if params[:ref].present?
+      @invitee = User.find(params[:ref])
+      @invitee_title = Relationship.find_by(
+        team: @wedding.teams.map(&:id),
+        user: @invitee
+      ).title
+      @invitee_team = Team.where(wedding: @wedding)
+                          .includes(:users)
+                          .find(@invitee)
+    end
   end
 
   # GET weddings/1/guests/1/edit
@@ -48,21 +59,22 @@ class GuestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_wedding
-      @wedding = Wedding.find(params[:wedding_id])
-    end
 
-    def set_guest
-      @guest = @wedding.guests.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_wedding
+    @wedding = Wedding.find(params[:wedding_id])
+  end
 
-    def wedding_params
-      params.permit(:wedding_id)
-    end
+  def set_guest
+    @guest = @wedding.guests.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def guest_params
-      params.require(:guest).permit(:name, :email, :address, :phone)
-    end
+  def wedding_params
+    params.permit(:wedding_id)
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def guest_params
+    params.require(:guest).permit(:name, :email, :address, :phone)
+  end
 end

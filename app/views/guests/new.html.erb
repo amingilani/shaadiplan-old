@@ -1,17 +1,24 @@
 <div class="ui text container">
     <h1>
-      Hello
+        Hello
     </h1>
+    <% if @invitee %>
+    <div class="ui segment">
+        <p>
+            <%= @wedding.couple.map{ |e| e.split(' ').first}.join(' & ') %>
+            are getting married soon and I wanted to make sure I had your right contact information.
+            <br>
+            Please fill out your information below!
+            <br>
+            &mdash;
+            <strong><%= @invitee.info :name %></strong>,
+            <%= @invitee_title %>
+            of the
+            <%= @invitee_team.side %>.
+        </p>
+    </div>
+    <% end %>
 
-<div class="ui segment">
-    <p>
-      <%= @wedding.couple.map{ |e| e.split(' ').first}.join(' & ') %> are getting
-      married soon and I wanted to make sure I had your
-      right contact information. <br>
-      Please fill out your information below! <br>
-      &mdash; <strong>Amin Shah Gilani</strong>, brother of the bride.
-    </p>
-</div>
     <%= form_for([@guest.wedding, @guest], html: { class: 'ui form'}) do |f| %>
     <% if @guest.errors.any? %>
     <div id="error_explanation">
@@ -47,6 +54,19 @@
         <%= f.label :invited_by %>
         <%= f.text_field :invited_by %>
     </div>
+    <%= f.label "I'm with the" %>
+
+    <div class="inline fields">
+        <% @wedding.teams.each do |team| %>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <%= f.radio_button :team, team.id %>
+                <%= f.label :team, "#{team.side.upcase_first}: #{team.name}" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+
     <div class="actions">
         <%= f.submit 'Sign me up!' , class: "ui button" %>
     </div>
