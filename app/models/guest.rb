@@ -24,13 +24,6 @@
 # * `index_guests_on_wedding_id`:
 #     * **`wedding_id`**
 #
-# ### Foreign Keys
-#
-# * `fk_rails_460affec6b`:
-#     * **`team_id => teams.id`**
-# * `fk_rails_d99b478b5f`:
-#     * **`wedding_id => weddings.id`**
-#
 
 class Guest < ApplicationRecord
   belongs_to :wedding

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016185116) do
+ActiveRecord::Schema.define(version: 20161016185454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,25 +40,6 @@ ActiveRecord::Schema.define(version: 20161016185116) do
     t.index ["wedding_id"], name: "index_organizers_on_wedding_id", using: :btree
   end
 
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "title"
-    t.index ["team_id"], name: "index_relationships_on_team_id", using: :btree
-    t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.integer  "wedding_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
-    t.integer  "side"
-    t.index ["wedding_id"], name: "index_teams_on_wedding_id", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "auth0_id",   null: false
     t.datetime "created_at", null: false
@@ -73,11 +54,6 @@ ActiveRecord::Schema.define(version: 20161016185116) do
     t.string   "groom_name", null: false
   end
 
-  add_foreign_key "guests", "teams"
-  add_foreign_key "guests", "weddings"
   add_foreign_key "organizers", "users"
   add_foreign_key "organizers", "weddings"
-  add_foreign_key "relationships", "teams"
-  add_foreign_key "relationships", "users"
-  add_foreign_key "teams", "weddings"
 end
