@@ -1,8 +1,0 @@
-<div class="ui text container">
-<ul>
-  <% @teams.each do |team| %>
-  <li><%= team.name %>'s Team</li>
-  <%= wedding_guests_path(team.wedding) %>
-  <% end %>
-</ul>
-</div>

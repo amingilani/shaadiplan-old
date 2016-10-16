@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   resources :teams
   resources :weddings do
     resources :guests
   end
+
   # home page
   root 'public_pages#home'
 
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
 
   # Dashboard
   get 'dashboard' => 'dashboard#show'
-  get 'dashboard/manage_teams' => 'dashboard#manage_teams'
-  get 'dashboard/manage_weddings' => 'dashboard#manage_weddings'
+
+  # Joining teams
+  get '/teams/:id/join' => 'teams#join', as: :team_join
 end

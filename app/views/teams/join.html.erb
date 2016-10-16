@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="ui text container">
+  <h1>You've been invited!</h1>
+  <p>
+    You've been invited to join the <strong><%= @team.side %>'s team</strong> at <%= @team.wedding.couple_first_names.join(' & ') %>'s wedding!
+  </p>
+
+  <p>Inside, you'll be able to: </p>
+  <ul>
+    <li>Invite wedding guests</li>
+    <li>Selectively invite guests to specific events (Soon)</li>
+    <li>Have wedding invitations printed and delivered (Soon)</li>
+    <li>View RSVP statuses (Soon)</li>
+    <li>Send broadcast SMS messages before and during the events (Soon)</li>
+  </ul>
+
+  <script src="https://cdn.auth0.com/js/lock/10.2/lock.min.js"></script>
+  <script type="text/javascript">
+    var lock = new Auth0Lock('TIKTNP8kYglAOMR6jhOEBBEi0qJUxFCI', 'gilani.auth0.com', {
+      auth: {
+        <% if Rails.env.production? %>
+        redirectUrl: 'https://shaadiplan.io/auth/auth0/callback',
+        <% else %>
+        redirectUrl: 'http://localhost:3000/auth/auth0/callback',
+        <% end %>
+        responseType: 'code',
+        params: {
+          scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+        }
+      }
+    });
+  </script>
+  <button class="ui button" onclick="lock.show();">Let's go!</button>
+
+</div>
