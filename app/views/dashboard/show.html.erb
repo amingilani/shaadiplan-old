@@ -4,8 +4,7 @@
         <h2>Welcome
             <%= current_user.info :name  %></h2>
         <p>You are part of
-            <a href="<%= dashboard_manage_teams_path %>">
-                <%= "#{@wedding_count} #{'wedding'.pluralize(@wedding_count)}" %></a>
+                <%= "#{@wedding_count} #{'wedding'.pluralize(@wedding_count)}" %>
         </p>
         <a class="ui button" href="<%= new_wedding_path %>">
             <%= @wedding_count.zero? ? 'Create one!' : 'Create another!' %></a>
