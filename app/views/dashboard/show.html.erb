@@ -4,9 +4,14 @@
         <h2>Welcome
             <%= current_user.info :name  %></h2>
         <p>You are part of
-                <%= "#{@wedding_count} #{'wedding'.pluralize(@wedding_count)}" %>
+                <%= "#{@user_teams.count} #{'wedding'.pluralize(@user_teams.count)}" %>
         </p>
+        <ul>
+        <% @user_teams.each do |team| %>
+        <li>The <em><%= team.side.upcase_first %>'s</em> team for <a href="<%= wedding_path(team.wedding) %>"><%= team.wedding.couple_first_names.join(' & ') %>'s wedding</a></li>
+        <% end %>
+        </ul>
         <a class="ui button" href="<%= new_wedding_path %>">
-            <%= @wedding_count.zero? ? 'Create one!' : 'Create another!' %></a>
+            <%= @user_teams.count.zero? ? 'Create one!' : 'Create another!' %></a>
     </div>
 </div>

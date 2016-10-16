@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @wedding_count = current_user.weddings.count
+    @user_teams = current_user.teams
   end
 
   def manage_teams

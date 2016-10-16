@@ -17,7 +17,13 @@ class Wedding < ApplicationRecord
   has_many :guests
   has_many :teams
 
+  # The full names of the couple
   def couple
     teams.map(&:name)
+  end
+
+  # The first names of the couple
+  def couple_first_names
+    couple.map { |e| e.split(' ').first }
   end
 end
