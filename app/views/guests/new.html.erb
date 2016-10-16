@@ -50,12 +50,19 @@
         <%= f.label :email %>
         <%= f.text_field :email %>
     </div>
+
+    <% if @invitee %>
+
+    <%= f.hidden_field :invited_by, value: @invitee.info(:name) %>
+    <%= f.hidden_field :team, value: @invitee_team.id %>
+    <% else %>
+
     <div class="field">
         <%= f.label :invited_by %>
         <%= f.text_field :invited_by %>
     </div>
-    <%= f.label "I'm with the" %>
 
+    <%= f.label "I'm with the" %>
     <div class="inline fields">
         <% @wedding.teams.each do |team| %>
         <div class="field">
@@ -66,6 +73,7 @@
         </div>
         <% end %>
     </div>
+    <% end %>
 
     <div class="actions">
         <%= f.submit 'Sign me up!' , class: "ui button" %>
