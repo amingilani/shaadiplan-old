@@ -98,6 +98,10 @@ class WeddingsController < ApplicationController
     @wedding = Wedding.find(params[:id])
   end
 
+  def set_current_user_team
+    @currnet_user_team = current_user.teams.find_by(wedding: @wedding)
+  end
+
   ## params
   def wedding_params
     params.fetch(:wedding).permit(:name)

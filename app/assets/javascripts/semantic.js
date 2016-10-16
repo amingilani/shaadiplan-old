@@ -9,3 +9,7 @@ $('ui.dropdown')
 $('select.dropdown')
   .dropdown()
 ;
+
+$('.ui.accordion')
+  .accordion()
+;

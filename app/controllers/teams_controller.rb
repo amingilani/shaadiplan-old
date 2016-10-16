@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class TeamsController < ApplicationController
+  before_action :authenticate_user!, only: %i(show)
   before_action :set_team, only: %i(show edit update join)
 
   # GET /teams

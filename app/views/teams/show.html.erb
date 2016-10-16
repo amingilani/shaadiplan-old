@@ -1,17 +1,57 @@
 <p id="notice"><%= notice %></p>
 
 <div class="ui text container">
-  <h1>Team <%= @team.side.upcase_first %>!</h1>
-  <p>
-    Here's a list of everyone on <%= @team.name.split(' ').first %>'s team!
-  </p>
+    <h1>Team
+        <%= @team.side.upcase_first %>!</h1>
+    <p>
+        Here's a list of everyone on
+        <%= @team.name.split(' ').first %>'s team!
+    </p>
 
-  <ol>
-    <% @team.relationships.each do |member| %>
-    <li><%= member.user.info :name %>, <%= member.title %> of the <%= @team.side %></li>
+    <ol>
+        <% @team.relationships.each do |member| %>
+        <li><%= member.user.info :name %>,
+            <%= member.title %>
+            of the
+            <%= @team.side %></li>
+        <% end %>
+    </ol>
+    <p>
+        People on teams can manage the events, and the guest list. Click the button below to invite guests.
+    </p>
+    <div class="ui accordion">
+        <div class="ui title basic green button">
+            Invite Guests
+        </div>
+        <div class="content">
+            <p class="ui transition hidden segment">Copy and send your guests the link below!
+                <br>
+
+                    <span class="hightlight hightlighter">
+                        <code>https://shaadiplan.io<%= new_wedding_guest_path(@team.wedding) %>?invitee=<%= current_user.id %></code>
+                    </span>
+            </p>
+        </div>
+    </div> <br>
+    <% if @team.relationships.count == 1 %>
+    <p>
+        It's just you on this team at the moment. Consider inviting more people.
+    </p>
     <% end %>
-  </ol>
-  <p>
-  <a href="<%= team_join_path %>">Invite more</a>
-  </p>
+    <p>
+    </p>
+    <div class="ui accordion">
+        <div class="ui title basic blue button">
+            Invite more team members
+        </div>
+        <div class="content">
+            <p class="ui transition hidden segment">Copy and send new team members the link below!
+                <br>
+
+                <span class="hightlight hightlighter">
+                    <code>https://shaadiplan.io<%= team_join_path %>?invitee=<%= current_user.id %></code>
+                </span>
+            </p>
+        </div>
+    </div>
 </div>
