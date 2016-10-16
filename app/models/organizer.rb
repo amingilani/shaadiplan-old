@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # ## Schema Information
 #
 # Table name: `organizers`
@@ -32,4 +33,28 @@
 class Organizer < ApplicationRecord
   belongs_to :wedding
   belongs_to :user
+
+  enum side: %w(
+    bride
+    groom
+  )
+
+  enum relationship: %w(
+    father
+    mother
+    brother
+    sister
+    friend
+    cousin
+    aunt
+    uncle
+    grandmother
+    grandfather
+    self
+  )
+
+  def relationship
+    return "The #{self[:side].upcase_first}" if self[:relationship] == 'self'
+    "#{self[:relationship].upcase_first} of the #{self[:side].upcase_first}"
+  end
 end

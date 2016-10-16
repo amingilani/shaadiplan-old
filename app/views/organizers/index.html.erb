@@ -1,33 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="ui text container">
+    <h1>Organizers</h1>
 
-<h1>Organizers</h1>
+    <table class="ui very basic collapsing celled table">
+        <tbody>
+            <% @organizers.each do |organizer| %>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="<%= organizer.user.info :picture %>" class="ui mini rounded image">
+                        <div class="content">
+                            <%= organizer.user.info :name %>
+                            <div class="sub header"><%= organizer.relationship %>
+                            </div>
+                        </div>
+                    </h4>
+                </td>
+                <td>
+                  <div class="ui small icon buttons">
+                    <a class="ui button" href="edit_wedding_organizer_path(@wedding, organizer)">
+                        <i class="pencil icon"></i>
+                    </a>
+                    <a class="ui button" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= wedding_organizer_path(@wedding, organizer) %>">
+                      <i class="trash icon"></i>
+                    </a>
+                  </div>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Relationship</th>
-      <th>Side</th>
-      <th>Wedding</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizers.each do |organizer| %>
-      <tr>
-        <td><%= organizer.relationship %></td>
-        <td><%= organizer.side %></td>
-        <td><%= organizer.wedding %></td>
-        <td><%= organizer.user %></td>
-        <td><%= link_to 'Show', organizer %></td>
-        <td><%= link_to 'Edit', edit_organizer_path(organizer) %></td>
-        <td><%= link_to 'Destroy', organizer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Organizer', new_organizer_path %>
+    <a class="ui basic green button" href="<%= new_wedding_organizer_path %>"><i class="add user icon"></i>Add organizers</a>
+</div>

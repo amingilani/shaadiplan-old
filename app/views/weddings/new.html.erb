@@ -4,25 +4,19 @@
     <%= form_for @wedding, html: {class: 'ui form'} do |f| %>
     <h3>Let's talk about the couple</h3>
 
-    <%= f.fields_for :team_bride do |tf| %>
     <div class="field">
-
-        <%= tf.label :name, 'Bride', class: "control-label" %>
-        <%= tf.text_field :name, placeholder: 'Saniya Mirza', class: "form-control" %>
+        <%= f.label :bride_name, 'Bride', class: "control-label" %>
+        <%= f.text_field :bride_name, placeholder: 'Saniya Mirza', class: "form-control" %>
     </div>
-    <% end %>
 
-    <%= f.fields_for :team_groom do |ta| %>
     <div class="field">
-
-        <%= ta.label :name, 'Groom', class: "control-label" %>
-        <%= ta.text_field :name, placeholder: 'Amir Khan', class: "form-control" %>
+        <%= f.label :groom_name, 'Groom', class: "control-label" %>
+        <%= f.text_field :groom_name, placeholder: 'Amir Khan', class: "form-control" %>
     </div>
-    <% end %>
 
     <h3>So, about you</h3>
 
-    <%= f.fields_for :relationship do |you| %>
+    <%= f.fields_for :organizer do |you| %>
     <div class="inline fields">
         <%= you.label "I'm with the" %>
 
@@ -40,15 +34,12 @@
                 <%= you.label :side_groom, 'Groom' %>
             </div>
         </div>
-      </div>
+    </div>
 
-
-        <div class="field">
-          <%= you.label :relationship, "I'm the", class: "control-label" %>
-            <%= you.select( :relationship, options_for_select(@relationship_titles), { include_blank: "Please select one" }, { class: "form-control" } ) %>
-        </div>
-
-
+    <div class="field">
+        <%= you.label :relationship, "I'm the", class: "control-label" %>
+        <%= you.select( :relationship, options_for_select(@relationship_titles), { include_blank: "Please select one" }, { class: "form-control" } ) %>
+    </div>
     <% end %>
 
     <%= f.submit "Let's go!", class: "ui button" %>

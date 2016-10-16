@@ -1,4 +1,5 @@
 class OrganizersController < ApplicationController
+  before_action :set_wedding
   before_action :set_organizer, only: [:show, :edit, :update, :destroy]
 
   # GET /organizers
@@ -64,7 +65,11 @@ class OrganizersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organizer
-      @organizer = Organizer.find(params[:id])
+      @organizer = wedding.organizers.find(params[:id])
+    end
+
+    def set_wedding
+      @wedding = Wedding.find(params[:wedding_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
