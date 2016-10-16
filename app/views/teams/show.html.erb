@@ -10,10 +10,10 @@
 
     <ol>
         <% @team.relationships.each do |member| %>
-        <li><%= member.user.info :name %>,
-            <%= member.title %>
-            of the
-            <%= @team.side %></li>
+        <li>
+          <%= member.user.info :name %>,
+          <%= member.title %>
+        </li>
         <% end %>
     </ol>
     <p>
