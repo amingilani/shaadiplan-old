@@ -54,7 +54,7 @@
     <% if @invitee %>
 
     <%= f.hidden_field :invited_by, value: @invitee.info(:name) %>
-    <%= f.hidden_field :team, value: @invitee_team.id %>
+    <%= f.hidden_field :team_id, value: @invitee_team.id %>
     <% else %>
 
     <div class="field">

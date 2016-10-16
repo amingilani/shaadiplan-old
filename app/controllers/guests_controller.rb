@@ -36,7 +36,7 @@ class GuestsController < ApplicationController
     @guest = @wedding.guests.build(guest_params)
 
     if @guest.save
-      redirect_to([@guest.weddings, @guest], notice: 'Guest was successfully created.')
+      redirect_to([@guest.wedding, @guest], notice: 'Guest was successfully created.')
     else
       render action: 'new'
     end
@@ -75,6 +75,6 @@ class GuestsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def guest_params
-    params.require(:guest).permit(:name, :email, :address, :phone)
+    params.require(:guest).permit(:name, :email, :address, :phone, :team_id, :invited_by)
   end
 end

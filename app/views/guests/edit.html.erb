@@ -1,6 +1,8 @@
-<h1>Editing guest</h1>
+<div class="ui text container">
+<h1>Editing</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@guest.weddings, @guest] %> |
-<%= link_to 'Back', weddings_guests_path(@guest.weddings) %>
+<%= link_to 'Show', [@guest.wedding, @guest] %> |
+<%= link_to 'Back', wedding_guest_path(@guest.wedding) %>
+</div>

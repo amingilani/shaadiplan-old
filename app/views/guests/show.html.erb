@@ -1,25 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+<div class="ui text container">
+
 <p>
-  <b>Name:</b>
+  <strong>Name:</strong>
   <%= @guest.name %>
 </p>
 
 <p>
-  <b>Email:</b>
+  <strong>Email:</strong>
   <%= @guest.email %>
 </p>
 
 <p>
-  <b>Address:</b>
+  <strong>Address:</strong>
   <%= @guest.address %>
 </p>
 
 <p>
-  <b>Phone:</b>
+  <strong>Phone:</strong>
   <%= @guest.phone %>
 </p>
 
+<p>
+  <strong>Invited by:</strong>
+  <em><%= @guest.invited_by %></em> of the <%= @guest.team.side %>'s side
+</p>
 
-<%= link_to 'Edit', edit_weddings_guest_path(@guest.weddings, @guest) %> |
-<%= link_to 'Back', weddings_guests_path(@guest.weddings) %>
+
+<%= link_to 'Edit', edit_wedding_guest_path(@guest.wedding, @guest) %> |
+<%= link_to 'Wedding', wedding_guest_path(@guest.wedding) %>
+</div>
