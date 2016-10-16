@@ -25,15 +25,17 @@
             <em>(Soon)</em>
         </li>
     </ul>
-
+<% if user_signed_in? %>
+<a class="ui basic green button" href="#">Join Team</a>
+<% else %>
     <script src="https://cdn.auth0.com/js/lock/10.2/lock.min.js"></script>
     <script type="text/javascript">
         var lock = new Auth0Lock('TIKTNP8kYglAOMR6jhOEBBEi0qJUxFCI', 'gilani.auth0.com', {
             auth: {
                 <% if Rails.env.production? %>
-                redirectUrl: 'https://shaadiplan.io/auth/auth0/callback',
+                redirectUrl: 'https://shaadiplan.io/auth/auth0/callback?origin=<%= url_encode(request.fullpath) %>',
                 <% else %>
-                redirectUrl: 'http://localhost:3000/auth/auth0/callback',
+                redirectUrl: 'http://localhost:3000/auth/auth0/callback?origin=<%= url_encode(request.fullpath) %>',
                 <% end %>
                 responseType: 'code',
                 params: {
@@ -42,6 +44,6 @@
             }
         });
     </script>
-    <button class="ui button" onclick="lock.show();">Let's go!</button>
-
+    <button class="ui button" onclick="lock.show();">Login!</button>
+<% end %>
 </div>

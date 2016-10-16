@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :teams
   resources :weddings do
     resources :guests
+    resources :teams
   end
 
   # home page
