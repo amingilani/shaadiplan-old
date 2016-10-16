@@ -1,23 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="ui text container">
+<div class="ui card">
+<div class="content">
+    <img class="right floated mini ui image" src="<%= @organizer.user.info :picture %>">
+    <div class="header">
+        <%= @organizer.user.info :name %>
+    </div>
+    <div class="meta">
+        <%= @organizer.relationship %>
+    </div>
+</div>
+</div>
+<%= link_to 'Edit', edit_wedding_organizer_path(@wedding, @organizer), class: 'ui button' %>
 
-<p>
-  <strong>Relationship:</strong>
-  <%= @organizer.relationship %>
-</p>
-
-<p>
-  <strong>Side:</strong>
-  <%= @organizer.side %>
-</p>
-
-<p>
-  <strong>Wedding:</strong>
-  <%= @organizer.wedding %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @organizer.user %>
-</p>
-
-<%= link_to 'Edit', edit_wedding_organizer_path(@wedding, @organizer) %> |
+</div>

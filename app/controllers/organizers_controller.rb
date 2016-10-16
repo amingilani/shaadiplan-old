@@ -44,14 +44,10 @@ class OrganizersController < ApplicationController
   # PATCH/PUT /organizers/1
   # PATCH/PUT /organizers/1.json
   def update
-    respond_to do |format|
-      if @organizer.update(organizer_params)
-        format.html { redirect_to @organizer, notice: 'Organizer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @organizer }
-      else
-        format.html { render :edit }
-        format.json { render json: @organizer.errors, status: :unprocessable_entity }
-      end
+    if @organizer.update(organizer_params)
+      redirect_to wedding_organizer_path @wedding, @organizer, notice: 'Organizer was successfully updated.'
+    else
+      render :edit
     end
   end
 
