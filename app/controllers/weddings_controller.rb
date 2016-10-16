@@ -17,19 +17,19 @@ class WeddingsController < ApplicationController
   # GET /weddings/new
   def new
     @wedding = Wedding.new
-    @relationship_titles = %w(
-      Father
-      Mother
-      Brother
-      Sister
-      Friend
-      Cousin
-      Aunt
-      Uncle
-      Grandmother
-      Grandfather
-      It's\ me!
-    )
+    @relationship_titles = [
+      %w(Father father),
+      %w(Mother mother),
+      %w(Brother brother),
+      %w(Sister sister),
+      %w(Friend friend),
+      %w(Cousin cousin),
+      %w(Aunt aunt),
+      %w(Uncle uncle),
+      %w(Grandmother grandmother),
+      %w(Grandfather grandfather),
+      %w(It's\ me! self)
+    ]
   end
 
   # GET /weddings/1/edit

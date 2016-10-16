@@ -45,6 +45,11 @@ class Relationship < ApplicationRecord
     aunt:        7,
     uncle:       8,
     grandmother: 9,
-    grandfather: 10
+    grandfather: 10,
+    self:        11
   }
+
+  def title
+    self[:title] == 'self' ? "the #{team.side}" : "#{self[:title]} of the #{team.side}"
+  end
 end

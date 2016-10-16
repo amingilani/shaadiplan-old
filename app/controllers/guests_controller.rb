@@ -15,16 +15,13 @@ class GuestsController < ApplicationController
   # GET weddings/1/guests/new
   def new
     @guest = @wedding.guests.build
-    if params[:ref].present?
-      @invitee = User.find(params[:ref])
-      @invitee_title = Relationship.find_by(
-        team: @wedding.teams.map(&:id),
-        user: @invitee
-      ).title
-      @invitee_team = Team.where(wedding: @wedding)
-                          .includes(:users)
-                          .find(@invitee)
-    end
+    set_invitee
+    return unless @invitee
+    @invitee_title = Relationship.find_by(
+      team: @wedding.teams.map(&:id),
+      user: @invitee
+    ).title
+    @invitee_team = @invitee.teams.find_by(wedding: @wedding)
   end
 
   # GET weddings/1/guests/1/edit
@@ -76,5 +73,10 @@ class GuestsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def guest_params
     params.require(:guest).permit(:name, :email, :address, :phone, :team_id, :invited_by)
+  end
+
+  def set_invitee
+    invitee_params = params.permit(:invitee)
+    @invitee = User.find(invitee_params[:invitee]) if invitee_params.present?
   end
 end
