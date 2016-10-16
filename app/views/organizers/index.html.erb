@@ -17,7 +17,7 @@
                 </td>
                 <td>
                   <div class="ui small icon buttons">
-                    <a class="ui button" href="edit_wedding_organizer_path(@wedding, organizer)">
+                    <a class="ui button" href="<%= edit_wedding_organizer_path(@wedding, organizer) %>">
                         <i class="pencil icon"></i>
                     </a>
                     <a class="ui button" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= wedding_organizer_path(@wedding, organizer) %>">

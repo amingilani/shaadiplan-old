@@ -1,4 +1,4 @@
-<%= form_for(organizer) do |f| %>
+<%= form_for([@wedding, @organizer], html: {class: 'ui form'}) do |f| %>
   <% if organizer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(organizer.errors.count, "error") %> prohibited this organizer from being saved:</h2>
@@ -11,27 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :relationship %>
-    <%= f.number_field :relationship %>
+  <div class="inline fields">
+      <%= f.label "With the" %>
+
+      <div class="field">
+          <div class="ui radio checkbox">
+
+              <%= f.radio_button :side, 'bride', :checked => true %>
+              <%= f.label :side_bride, 'Bride' %>
+          </div>
+      </div>
+      <div class="field">
+          <div class="ui radio checkbox">
+              <%= f.radio_button :side, 'groom' %>
+              <%= f.label :side_groom, 'Groom' %>
+          </div>
+      </div>
   </div>
 
-  <div class="field">
-    <%= f.label :side %>
-    <%= f.number_field :side %>
-  </div>
-
-  <div class="field">
-    <%= f.label :wedding_id %>
-    <%= f.text_field :wedding_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
+  <div class="ui field">
+      <%= f.label :relationship, "I'm the", class: "control-label" %>
+      <%= f.select( :relationship, options_for_select(@relationship_titles), { include_blank: "Please select one" }, { class: "form-control" } ) %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Save', class: 'ui button' %>
+    <a class="ui red button" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= wedding_organizer_path(@wedding, organizer) %>">
+      <i class="trash icon"></i>Delete
+    </a>
+
   </div>
 <% end %>

@@ -1,6 +1,25 @@
-<h1>Editing Organizer</h1>
+<div class="ui text container">
+  <h1>Editing <%= @organizer.user.info(:name).split(" ").first %></h1>
+    <div class="ui two column collapsable grid container">
+        <div class="ui column">
 
-<%= render 'form', organizer: @organizer %>
+            <%= render 'form', organizer: @organizer %> <br>
 
-<%= link_to 'Show', @organizer %> |
-<%= link_to 'Back', organizers_path %>
+          <a class="ui basic button" href="<%= wedding_organizers_path(@wedding) %>"> <i class="left arrow icon"></i> Wedding</a>
+
+        </div>
+        <div class="ui column">
+            <div class="ui card">
+                <div class="content">
+                    <img class="right floated mini ui image" src="<%= @organizer.user.info :picture %>">
+                    <div class="header">
+                        <%= @organizer.user.info :name %>
+                    </div>
+                    <div class="meta">
+                      <%= @organizer.relationship %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

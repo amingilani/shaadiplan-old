@@ -10,7 +10,11 @@
     <body>
         <%= render 'partials/header' %>
         <%= render 'partials/flash_messages' %>
+
+        <div class="body">
         <%= yield %>
+        </div>
+
         <%= javascript_include_tag 'application' %>
     </body>
 </html>

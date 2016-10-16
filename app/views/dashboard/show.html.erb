@@ -4,14 +4,14 @@
         <h2>Welcome
             <%= current_user.info :name  %></h2>
         <p>You are part of
-                <%= "#{@user_weddings.count} #{'wedding'.pluralize(@user_weddings.count)}" %>
+                <%= "#{@user.organizers.count} #{'wedding'.pluralize(@user.organizers.count)}" %>
         </p>
         <ul>
-        <% @user_weddings.each do |organizer| %>
-        <li>The <a href="<%= wedding_team_path(team, team.wedding) %>"><em><%= team.side.upcase_first %>'s</em> team</a> for <a href="<%= wedding_path(team.wedding) %>"><%= team.wedding.couple_first_names.join(' & ') %>'s wedding</a></li>
+        <% @user.organizers.each do |organizer| %>
+        <li>The <a href="<%= wedding_organizers_path(organizer.wedding) %>"><em><%= organizer.relationship %></em></a> for <strong><a href="<%= wedding_path(organizer.wedding) %>"><%= organizer.wedding.couple_first_names.join(' & ') %>'s wedding</a></strong></li>
         <% end %>
         </ul>
         <a class="ui button" href="<%= new_wedding_path %>">
-            <%= @user_weddings.count.zero? ? 'Create one!' : 'Create another!' %></a>
+            <%= @user.organizers.count.zero? ? 'Create one!' : 'Create another!' %></a>
     </div>
 </div>
