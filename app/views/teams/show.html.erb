@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <div class="ui text container">
+  <h1>Team <%= @team.side.upcase_first %>!</h1>
   <p>
-    <strong>Color:</strong>
-    <%= @team.color %>
+    Here's a list of everyone on <%= @team.name.split(' ').first %>'s team!
   </p>
 
-  <p>
-    <strong>Wedding:</strong>
-    <%= @team.wedding %>
-  </p>
-
+  <ol>
+    <% @team.relationships.each do |member| %>
+    <li><%= member.user.info :name %>, <%= member.title %> of the <%= @team.side %></li>
+    <% end %>
+  </ol>
 </div>

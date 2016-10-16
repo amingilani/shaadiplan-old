@@ -8,7 +8,7 @@
         </p>
         <ul>
         <% @user_teams.each do |team| %>
-        <li>The <em><%= team.side.upcase_first %>'s</em> team for <a href="<%= wedding_path(team.wedding) %>"><%= team.wedding.couple_first_names.join(' & ') %>'s wedding</a></li>
+        <li>The <a href="<%= team_path(team) %>"><em><%= team.side.upcase_first %>'s</em> team</a> for <a href="<%= wedding_path(team.wedding) %>"><%= team.wedding.couple_first_names.join(' & ') %>'s wedding</a></li>
         <% end %>
         </ul>
         <a class="ui button" href="<%= new_wedding_path %>">
