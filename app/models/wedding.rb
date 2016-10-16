@@ -11,11 +11,13 @@
 # **`created_at`**  | `datetime`         | `not null`
 # **`updated_at`**  | `datetime`         | `not null`
 # **`name`**        | `string`           | `not null`
+# **`bride_name`**  | `string`           | `not null`
+# **`groom_name`**  | `string`           | `not null`
 #
 
 class Wedding < ApplicationRecord
-  has_many :guests
-  has_many :teams
+  has_many :organizers
+  has_many :users, through: :organizer
 
   # The full names of the couple
   def couple

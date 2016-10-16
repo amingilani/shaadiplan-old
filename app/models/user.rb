@@ -15,9 +15,8 @@
 class User < ApplicationRecord
   after_initialize :set_instance_variables
 
-  has_many :relationships
-  has_many :teams, through: :relationships
-  has_many :weddings, through: :teams
+  has_many :organizers
+  has_many :weddings, through: :organizer
 
   validates :auth0_id, presence: true,
                        uniqueness: true
