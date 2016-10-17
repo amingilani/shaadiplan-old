@@ -1,8 +1,8 @@
 <div class="ui text container">
     <h1>
-        Hello
+        <%= @invited_by.present? ? "You're invited!" : 'Come on in!' %>
     </h1>
-    <% if @invitee %>
+    <% if @invited_by %>
     <div class="ui segment">
         <p>
             <%= @wedding.couple_first_names.join(' & ') %>
@@ -11,8 +11,8 @@
             Please fill out your information below!
             <br>
             &mdash;
-            <strong><%= @invitee.info :name %></strong>,
-            <%= @invitee_title %>.
+            <strong><%= @invited_by.user.info :name %></strong>,
+            <%= @invited_by.relationship %>.
         </p>
     </div>
     <% end %>
@@ -49,29 +49,35 @@
         <%= f.text_field :email %>
     </div>
 
-    <% if @invitee %>
+    <% if @invited_by %>
 
-    <%= f.hidden_field :invited_by, value: @invitee.info(:name) %>
-    <%= f.hidden_field :team_id, value: @invitee_team.id %>
+    <%= f.hidden_field :invited_by, value: @invited_by.user.info(:name) %>
     <% else %>
 
     <div class="field">
         <%= f.label :invited_by %>
         <%= f.text_field :invited_by %>
     </div>
+    <% end %>
 
-    <%= f.label "I'm with the" %>
     <div class="inline fields">
-        <% @wedding.teams.each do |team| %>
+        <%= f.label "I'm with the" %>
+
         <div class="field">
             <div class="ui radio checkbox">
-                <%= f.radio_button :team, team.id %>
-                <%= f.label :team, "#{team.side.upcase_first}: #{team.name}" %>
+
+                <%= f.radio_button :side, 'bride', checked: @invited_by && @invited_by.side == 'bride' %>
+                <%= f.label :side_bride, 'Bride' %>
             </div>
         </div>
-        <% end %>
+        <div class="field">
+            <div class="ui radio checkbox">
+
+                <%= f.radio_button :side, 'groom', checked: @invited_by && @invited_by.side == 'groom' %>
+                <%= f.label :side_groom, 'Groom' %>
+            </div>
+        </div>
     </div>
-    <% end %>
 
     <div class="actions">
         <%= f.submit 'Sign me up!' , class: "ui button" %>
