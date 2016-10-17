@@ -1,33 +1,23 @@
-<p id="notice"><%= notice %></p>
-
 <div class="ui text container">
 
 <p>
-  <strong>Name:</strong>
-  <%= @guest.name %>
+  Thanks <%= @guest.name %>!<br>
+  You're all signed up! We'll be contacting you soon!
 </p>
 
 <p>
   <strong>Email:</strong>
-  <%= @guest.email %>
-</p>
-
-<p>
+  <%= @guest.email %> <br>
   <strong>Address:</strong>
-  <%= @guest.address %>
-</p>
-
-<p>
+  <%= @guest.address %> <br>
   <strong>Phone:</strong>
   <%= @guest.phone %>
 </p>
 
-<p>
-  <strong>Invited by:</strong>
-  <em><%= @guest.invited_by %></em> of the <%= @guest.team.side %>'s side
-</p>
 
 
-<%= link_to 'Edit', edit_wedding_guest_path(@guest.wedding, @guest) %> |
-<%= link_to 'Wedding', wedding_guest_path(@guest.wedding) %>
+<%= link_to 'Edit', edit_wedding_guest_path(@guest.wedding, @guest), class: 'ui button' %>
+<%= link_to wedding_guest_path(@guest.wedding), class: 'ui button' do %>
+<i class="ui left arrow icon"></i> Wedding
+<% end %>
 </div>

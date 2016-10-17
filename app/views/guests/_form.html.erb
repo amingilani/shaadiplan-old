@@ -28,6 +28,9 @@
     <%= f.text_field :phone %>
   </div>
   <div class="actions">
-    <%= f.submit class: 'ui button'%>
+    <%= f.submit 'Save', class: 'ui button'%>
+    <%= link_to wedding_path(@guest.wedding), class: 'ui button' do %>
+    <i class="ui left arrow icon"></i> Wedding
+    <% end %>
   </div>
 <% end %>
