@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016185454) do
+ActiveRecord::Schema.define(version: 20161017001331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,12 @@ ActiveRecord::Schema.define(version: 20161016185454) do
     t.integer  "wedding_id"
     t.string   "name"
     t.string   "email"
-    t.string   "address"
+    t.text     "address",    null: false
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "invited_by"
-    t.integer  "team_id"
-    t.index ["team_id"], name: "index_guests_on_team_id", using: :btree
+    t.integer  "side",       null: false
     t.index ["wedding_id"], name: "index_guests_on_wedding_id", using: :btree
   end
 

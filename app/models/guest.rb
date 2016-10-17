@@ -10,17 +10,15 @@
 # **`wedding_id`**  | `integer`          |
 # **`name`**        | `string`           |
 # **`email`**       | `string`           |
-# **`address`**     | `string`           |
+# **`address`**     | `text`             | `not null`
 # **`phone`**       | `string`           |
 # **`created_at`**  | `datetime`         | `not null`
 # **`updated_at`**  | `datetime`         | `not null`
 # **`invited_by`**  | `string`           |
-# **`team_id`**     | `integer`          |
+# **`side`**        | `integer`          | `not null`
 #
 # ### Indexes
 #
-# * `index_guests_on_team_id`:
-#     * **`team_id`**
 # * `index_guests_on_wedding_id`:
 #     * **`wedding_id`**
 #
