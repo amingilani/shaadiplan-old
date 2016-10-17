@@ -18,6 +18,7 @@
 class Wedding < ApplicationRecord
   before_validation :set_name
 
+  has_many :guests
   has_many :organizers
   has_many :users, through: :organizer
 

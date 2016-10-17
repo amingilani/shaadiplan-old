@@ -27,5 +27,4 @@
 
 class Guest < ApplicationRecord
   belongs_to :wedding
-  belongs_to :team
 end
